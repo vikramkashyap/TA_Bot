@@ -31,6 +31,8 @@ public class NeuralNetwork implements Member<NeuralNetwork>{
 		result.biasWeight = (Math.random()<.5)?n1.biasWeight:n2.biasWeight;
 	}
 	public NeuralNetwork[] breed(NeuralNetwork p){
+		rett = new NeuralNetwork[2];
+		for(int l = 0; l<2; l++){
 		myvals = vals();
 		pvals = vals();
 		ArrayList<Neuron[]> ret = new ArrayList<>();
@@ -44,6 +46,8 @@ public class NeuralNetwork implements Member<NeuralNetwork>{
 				}
 			}
 		}
+	}
+	return rett;
 	}
 	public double score(){
 		return 0;

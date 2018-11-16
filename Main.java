@@ -1,5 +1,3 @@
-package ta_bot;
-
 import java.util.Scanner;
 
 public class Main {
@@ -14,19 +12,19 @@ public class Main {
 		net = new NeuralNetwork();
 		double[] data = new double[net.getNumInputs()];
 		
-//		while(iter <= 8000000){
-//			net.train(trainingIndex);
-//			if(iter % 100000 == 0){
-//				System.out.println("ITERATION: " + iter);
-//				net.displayWeights();
-//				net.displayResult(false);
-//			}
-//			iter++;
-//			trainingIndex++;
-//			if(trainingIndex == net.trainingData.length){
-//				trainingIndex = 0;
-//			}
-//		}
+		while(iter <= 8000000){
+			net.train(trainingIndex);
+			if(iter % 100000 == 0){
+				System.out.println("ITERATION: " + iter);
+				net.displayWeights();
+				net.displayResult(false);
+			}
+			iter++;
+			trainingIndex++;
+			if(trainingIndex == net.trainingData.length){
+				trainingIndex = 0;
+			}
+		}
 		
 		while(true){
 			System.out.println();
@@ -52,4 +50,3 @@ public class Main {
 	}
 
 }
-

@@ -1,6 +1,5 @@
 
 
-import org.bitenet.predict.data.DataSet;
 /*
  * Purpose: This represents a member to be evolved
  * 

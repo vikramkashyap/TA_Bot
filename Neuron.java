@@ -52,32 +52,8 @@ public class Neuron {
 		error += residual * (lastOutput * (1 - lastOutput));
 		return error;
 		
-//		double[] previousLayerContribution = new double[weights.length];
-//		for (int i = 0; i < weights.length; i++) {
-//			previousLayerContribution[i] = weights[i];
-//		}
-//		for (int i = 0; i < previousLayerContribution.length; i++) {
-//			previousLayerContribution[i] *= delta;
-//		}
-//		return previousLayerContribution;
 		
 	}
-	
-//	//pass in a double array that contains the results for each training case
-//	public void updateWeightsLastLayer(double[][] inputValues, double[] expectedValues, double[] actualValues){
-//		double[] deltaWeights = new double[numInputs];
-//		for (int i = 0; i < expectedValues.length; i++) {
-//			double slope = actualValues[i] * (1 - actualValues[i]);
-//			double residual = expectedValues[i] - actualValues[i];
-//			for (int j = 0; j < numInputs; j++) {
-//				deltaWeights[j] += inputValues[i][j] * slope * residual;
-//			}
-//			
-//		}
-//		for (int w = 0; w < weights.length; w++) {
-//			weights[w] += rate * deltaWeights[w];
-//		}
-//	}
 	
 	
 	public double calculateResidual(double truevalue){
@@ -106,7 +82,16 @@ public class Neuron {
 		return previousLayerContribution;
 		
 	}
-	
+	public Neuron clone(){
+		Neuron n = new Neuron(numInputs);
+		n.weights = weights;
+		n.biasWeight=biasWeight;
+		n.momentumWeight=momentumWeight;
+		n.inputs = inputs;
+		n.lastOutput=lastOutput;
+		n.previousWeightDeltas=previousWeightDeltas;
+		return n;
+	}
 	public double sigmoidFunction(double x){
 		return (1/ (1 + Math.exp(-x)));
 	}

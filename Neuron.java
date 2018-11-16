@@ -17,6 +17,12 @@ public class Neuron {
 	double biasWeight = -1;
 	double momentumWeight = 0;
 	
+	public void mutate(){
+		for (int i =0; i<weights.length; i++){
+			if(Math.random()<.04)inputs[i]=inputs[i]+10*(Math.random()-.5);
+		}
+		if(Math.random()<.4)biasWeight+=10*(Math.random()-.5);
+	}
 	public Neuron(int newInputs){
 		numInputs = newInputs;
 		inputs = new double[numInputs];

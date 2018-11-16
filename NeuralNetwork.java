@@ -7,7 +7,7 @@ public class NeuralNetwork implements Member<NeuralNetwork>{
 	
 	final Random random = new Random();
 	final int rawInputs = 3;
-	int[] neuronsInLayer = {32, 16, 8, 4};
+	int[] neuronsInLayer = {34, 16, 8, 4};
 	ArrayList<Neuron[]> layers = new ArrayList<>();
 	
 	
@@ -16,24 +16,48 @@ public class NeuralNetwork implements Member<NeuralNetwork>{
 //	final int trainingMax = 100;
 //	double[][] trainingData = new double[trainingSetSize][rawInputs];
 //	double[][] trainingAnswers = new double[trainingSetSize][neuronsInLayer[1]];
-
-	public NeuralNetwork[] breed(NeuralNetwork p){
-
+	public Neuron averageNeurons(Neuron n1, Neuron n2){
+		result = (Neuron)n1.clone();
+		for(int i=0; i<n1.weights.length; i++){
+			result.weights[i] = (n1.weights[i]+n2.weights[i])/2;
+		}
+		result.biasWeight = (n1.biasWeight+n2.biasWeight)/2;
 	}
-	public score(){
-
+	public Neuron dropoutNeurons(Neuron n1, Neuron n2){
+		result = (Neuron)n1.clone();
+		for(int i=0; i<n1.weights.length; i++){
+			result.weights[i] = (Math.random()<.5)?n1.weights[i]:n2.weights[i];
+		}
+		result.biasWeight = (Math.random()<.5)?n1.biasWeight:n2.biasWeight;
+	}
+	public NeuralNetwork[] breed(NeuralNetwork p){
+		myvals = vals();
+		pvals = vals();
+		ArrayList<Neuron[]> ret = new ArrayList<>();
+		for(int i =0; i<pvals.length; i++){
+			ret.add(new Neuron[pvals.get(i).length()]);
+			for (int j=0; j<pvals.get(i).length; j++){
+				if(Math.random()<.3){
+					ret.get(i)[j] = averageNeurons(pvals.get(i)[j],myvals.get(i)[j]);
+				}else{
+					ret.get(i)[j] = dropoutNeurons(pvals.get(i)[j],myvals.get(i)[j]);
+				}
+			}
+		}
+	}
+	public double score(){
+		return 0;
 	}
 	public NeuralNetwork random(){
-
+		return new NeuralNetwork();
 	}
 	public void mutate(){
-		Neuron[][] me = vals();
+		Arraylist<Neuron[]> me = vals();
 		for (Neuron[] layer : me){
 			for (Neuron n : me){
 				if (Math.random()<.031)n.mutate();
 			}
 		}
-
 	}
 	public void print(){
 		displayWeights();
@@ -42,10 +66,10 @@ public class NeuralNetwork implements Member<NeuralNetwork>{
 	public NeuralNetwork clone(){
 		return new NeuralNetwork(vals());
 	}
-	private Neuron[][] vals(){
-
+	private ArrayList<Neuron[]> vals(){
+		return layers;
 	}
-	private NeuralNetwork(Neuron[][] ners){
+	private NeuralNetwork(ArrayList<Neuron[]> ners){
 		for (Neuron[] layerog: ners){
 			Neuron[] layer = new Neuron[layerog.length];
 			for (int i = 0; i<layerog.length; i++){

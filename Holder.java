@@ -1,5 +1,3 @@
-package org.bitenet.predict.genetic;
-
 import java.util.ArrayList;
 
 /*
@@ -35,6 +33,13 @@ public Holder<T> mutate() {
 	Holder<T> temp = new Holder<T>(clone.getMember());
 	temp.myMem.mutate();
 	return temp;
+}
+@Override
+public Holder<T> clone(){
+	ret = new Holder<T>(myMem.clone());
+	ret.myScore = myScore;
+	ret.complete = complete;
+	return ret;
 }
 public int compareTo(Holder<T> in) {
 	if (getScore() < in.getScore()) {

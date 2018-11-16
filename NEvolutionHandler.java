@@ -1,5 +1,3 @@
-package org.bitenet.predict.genetic;
-
 import org.bitenet.predict.data.DataSet;
 /*
  * Purpose: This runs a genetic algorithm

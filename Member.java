@@ -1,4 +1,4 @@
-package org.bitenet.predict.genetic;
+
 
 import org.bitenet.predict.data.DataSet;
 /*
@@ -14,4 +14,5 @@ public double score();
 public T random();
 public void mutate();
 public void print();
+public T clone();
 }

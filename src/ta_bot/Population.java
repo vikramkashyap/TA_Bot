@@ -9,7 +9,7 @@ import java.util.Random;
  * @author Carson Cummins
  * @version 0.0
  */
-public class NPopulation <T extends Member<T>>{
+public class Population <T extends Member<T>>{
 
 	/** The size of the tournament. */
 	private static final int TOURNAMENT_SIZE = 3;
@@ -18,7 +18,7 @@ public class NPopulation <T extends Member<T>>{
 	private float mutation;
 	private float crossover;
 	private ArrayList<Holder<T>> popArr;
-	public NPopulation(int size, float crossoverRatio, float elitismRatio, float mutationRatio, T parent) {
+	public Population(int size, float crossoverRatio, float elitismRatio, float mutationRatio, T parent) {
 		
 		this.crossover = crossoverRatio;
 		this.elitism = elitismRatio;

@@ -6,10 +6,10 @@ package ta_bot;
  * @author Carson Cummins
  * @version 0.0
  */
-public class NEvolutionHandler {
+public class EvolutionHandler {
 
 public static <T extends Member<T>> T train(DataSet inDat, DataSet outDat,int populationSize, int maxGenerations,float crossoverRatio,float elitismRatio,float mutationRatio, double err, T parent){
-	NPopulation<T> pop = new NPopulation<>(populationSize, crossoverRatio, elitismRatio, mutationRatio,parent,inDat,outDat);
+	Population<T> pop = new Population<>(populationSize, crossoverRatio, elitismRatio, mutationRatio,parent,inDat,outDat);
 	// Start evolving the population, stopping when the maximum number of
 	// generations is reached, or when we find a solution.
 	int i = 0;

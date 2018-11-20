@@ -1,10 +1,13 @@
 package ta_bot;
 
+import java.io.Serializable;
+
 //Nathan Purwosumarto - August 2017
 
 import java.util.Random;
 
-public class Neuron {
+public class Neuron implements Serializable{
+	private static final long serialVersionUID = 12345L;
 	
 	static Random random = new Random();
 	

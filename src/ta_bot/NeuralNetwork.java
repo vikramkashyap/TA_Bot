@@ -1,19 +1,61 @@
 package ta_bot;
 
+import java.io.Serializable;
+
 //Nathan Purwosumarto - August 2017
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.io.*;
 
-public class NeuralNetwork implements Member<NeuralNetwork>{
+public class NeuralNetwork implements Member<NeuralNetwork>,Serializable{
 	
+	final String SERIALIZE_FILEPATH = "NeuralNetwork.tabot";
 	final Random random = new Random();
 	final int rawInputs = 3;
-	int[] neuronsInLayer = {34, 16, 8, 4};
+	final int[] neuronsInLayer = {34, 16, 8, 4};
 	ArrayList<Neuron[]> layers = new ArrayList<>();
+	private static final long serialVersionUID = 1234L;
 	
 	
+
+	public void serialize(String filepath){
+		try{    
+            //Saving of object in a file 
+            FileOutputStream file = new FileOutputStream(filepath); 
+            ObjectOutputStream out = new ObjectOutputStream(file); 
+              
+            // Method for serialization of object 
+            out.writeObject(this); 
+              
+            out.close(); 
+            file.close(); 
+  
+        } catch(IOException ex){ 
+            System.out.println("IOException is caught"); 
+        } 
+	}
+	public static NeuralNetwork deserialize(String filepath){
+		  // Deserialization 
+		  try{    
+			  // Reading the object from a file 
+			  FileInputStream file = new FileInputStream(filepath); 
+			  ObjectInputStream in = new ObjectInputStream(file); 
+				
+			  // Method for deserialization of object 
+			  NeuralNetwork ret = (NeuralNetwork)in.readObject(); 
+				
+			  in.close(); 
+			  file.close();
+			  return ret; 
+		  }catch(IOException ex){ 
+			  System.out.println("IOException is caught"); 
+		  }catch(ClassNotFoundException ex) { 
+			  System.out.println("ClassNotFoundException is caught"); 
+		  }
+		  return null;
 	
+	}
 //	final int trainingSetSize = 100;
 //	final int trainingMax = 100;
 //	double[][] trainingData = new double[trainingSetSize][rawInputs];
@@ -54,7 +96,11 @@ public class NeuralNetwork implements Member<NeuralNetwork>{
 	return rett;
 	}
 	public double score(){
-		return 0;
+		//serialize the neural network
+		serialize(SERIALIZE_FILEPATH);
+		int score = Score.score(5);
+		return (double)score;
+
 	}
 	public NeuralNetwork random(){
 		return new NeuralNetwork();

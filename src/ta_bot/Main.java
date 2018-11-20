@@ -3,47 +3,16 @@ package ta_bot;
 import java.util.Scanner;
 
 public class Main {
-	
-	int iter = 0;
-	int trainingIndex = 0;
-	Scanner scan = new Scanner(System.in);
-	String input = "placeholder";
-	NeuralNetwork net;
+	public final int POP_SIZE = 100;
+	public final int MAX_GENS = 100000;
+	public final float CROSSOVER_RATE = .5f;
+	public final float ELITE_RATE = .1f;
+	public final float MUTATE_RATE = .05f;
+	public final double REQ_ERROR = .001;
 	
 	public Main() {
-		net = new NeuralNetwork();
-		double[] data = new double[net.getNumInputs()];
-		
-//		while(iter <= 8000000){
-//			net.train(trainingIndex);
-//			if(iter % 100000 == 0){
-//				System.out.println("ITERATION: " + iter);
-//				net.displayWeights();
-//				net.displayResult(false);
-//			}
-//			iter++;
-//			trainingIndex++;
-//			if(trainingIndex == net.trainingData.length){
-//				trainingIndex = 0;
-//			}
-//		}
-		
-		while(true){
-			System.out.println();
-			for(int i = 0; i < data.length; i++){
-				System.out.print("Enter data point " + (i+1) + ": ");
-				input = scan.nextLine();
-				try{
-					data[i] = Double.parseDouble(input);
-					System.out.println(data[i]);
-				}
-				catch (Exception e){
-					System.out.println("Enter a double!");
-					i--;
-				}
-			}
-			net.run(data);
-		}	
+		NeuralNetwork network = EvolutionHandler.train(POP_SIZE, MAX_GENS, CROSSOVER_RATE, ELITE_RATE, MUTATE_RATE, REQ_ERROR, new NeuralNetwork());
+		network.serialize(NeuralNetwork.SERIALIZE_FILEPATH);
 	}
 
 	public static void main(String[] args) {

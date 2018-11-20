@@ -99,7 +99,7 @@ public class NeuralNetwork implements Member<NeuralNetwork>,Serializable{
 		//serialize the neural network
 		serialize(SERIALIZE_FILEPATH);
 		int score = Score.score(5);
-		return (double)score;
+		return (double)1000/(double)score;
 
 	}
 	public NeuralNetwork random(){

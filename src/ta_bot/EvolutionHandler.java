@@ -8,8 +8,8 @@ package ta_bot;
  */
 public class EvolutionHandler {
 
-public static <T extends Member<T>> T train(DataSet inDat, DataSet outDat,int populationSize, int maxGenerations,float crossoverRatio,float elitismRatio,float mutationRatio, double err, T parent){
-	Population<T> pop = new Population<>(populationSize, crossoverRatio, elitismRatio, mutationRatio,parent,inDat,outDat);
+public static <T extends Member<T>> T train(int populationSize, int maxGenerations,float crossoverRatio,float elitismRatio,float mutationRatio, double err, T parent){
+	Population<T> pop = new Population<>(populationSize, crossoverRatio, elitismRatio, mutationRatio,parent);
 	// Start evolving the population, stopping when the maximum number of
 	// generations is reached, or when we find a solution.
 	int i = 0;

@@ -30,15 +30,14 @@ public ArrayList<Holder<T>> breed(Holder<T> in) {
 	return ret;
 }
 public Holder<T> mutate() {
-	Cloner cloner=new Cloner();
-	Holder<T> clone = cloner.deepClone(this);
+	Holder<T> clone = clone();
 	Holder<T> temp = new Holder<T>(clone.getMember());
 	temp.myMem.mutate();
 	return temp;
 }
 @Override
 public Holder<T> clone(){
-	ret = new Holder<T>(myMem.clone());
+	Holder<T> ret = new Holder<T>(myMem.clone());
 	ret.myScore = myScore;
 	ret.complete = complete;
 	return ret;

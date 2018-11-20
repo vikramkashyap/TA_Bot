@@ -2,7 +2,6 @@ package ta_bot;
 
 //Nathan Purwosumarto - August 2017
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Neuron {

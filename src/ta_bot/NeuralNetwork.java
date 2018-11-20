@@ -19,27 +19,29 @@ public class NeuralNetwork implements Member<NeuralNetwork>{
 //	double[][] trainingData = new double[trainingSetSize][rawInputs];
 //	double[][] trainingAnswers = new double[trainingSetSize][neuronsInLayer[1]];
 	public Neuron averageNeurons(Neuron n1, Neuron n2){
-		result = (Neuron)n1.clone();
+		Neuron result = (Neuron)n1.clone();
 		for(int i=0; i<n1.weights.length; i++){
 			result.weights[i] = (n1.weights[i]+n2.weights[i])/2;
 		}
 		result.biasWeight = (n1.biasWeight+n2.biasWeight)/2;
+		return result;
 	}
 	public Neuron dropoutNeurons(Neuron n1, Neuron n2){
-		result = (Neuron)n1.clone();
+		Neuron result = (Neuron)n1.clone();
 		for(int i=0; i<n1.weights.length; i++){
 			result.weights[i] = (Math.random()<.5)?n1.weights[i]:n2.weights[i];
 		}
 		result.biasWeight = (Math.random()<.5)?n1.biasWeight:n2.biasWeight;
+		return result;
 	}
 	public NeuralNetwork[] breed(NeuralNetwork p){
-		rett = new NeuralNetwork[2];
+		NeuralNetwork[] rett = new NeuralNetwork[2];
 		for(int l = 0; l<2; l++){
-		myvals = vals();
-		pvals = vals();
+		ArrayList<Neuron[]> myvals = vals();
+		ArrayList<Neuron[]> pvals = vals();
 		ArrayList<Neuron[]> ret = new ArrayList<>();
-		for(int i =0; i<pvals.length; i++){
-			ret.add(new Neuron[pvals.get(i).length()]);
+		for(int i =0; i<pvals.size(); i++){
+			ret.add(new Neuron[pvals.get(i).length]);
 			for (int j=0; j<pvals.get(i).length; j++){
 				if(Math.random()<.3){
 					ret.get(i)[j] = averageNeurons(pvals.get(i)[j],myvals.get(i)[j]);
@@ -58,9 +60,9 @@ public class NeuralNetwork implements Member<NeuralNetwork>{
 		return new NeuralNetwork();
 	}
 	public void mutate(){
-		Arraylist<Neuron[]> me = vals();
+		ArrayList<Neuron[]> me = vals();
 		for (Neuron[] layer : me){
-			for (Neuron n : me){
+			for (Neuron n : layer){
 				if (Math.random()<.031)n.mutate();
 			}
 		}
@@ -109,10 +111,10 @@ public class NeuralNetwork implements Member<NeuralNetwork>{
 		double[][] lastLayerContribution = new double[layers.get(lastLayer).length][];
 		for (int i = 0; i < layers.get(lastLayer).length; i++) {
 			Neuron n = layers.get(lastLayer)[i];
-			double[] currentSet = trainingData[trainingIndex];
+			//double[] currentSet = {};//trainingData[trainingIndex];
 			//System.out.println(currentSet[0] + " " + currentSet[1] + " " + currentSet[2]);
-			double[] resultArray = calculate(currentSet);
-			double[] correctAnswers = trainingAnswers[trainingIndex];
+			//double[] resultArray = calculate(currentSet);
+			double[] correctAnswers = {};//trainingAnswers[trainingIndex];
 			lastLayerContribution[i] = n.updateWeights(n.calculateResidual(correctAnswers[i]));
 		}
 		backpropagate(lastLayer-1, lastLayerContribution);

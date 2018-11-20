@@ -3,14 +3,14 @@ package ta_bot;
 import java.io.Serializable;
 
 //Nathan Purwosumarto - August 2017
-
+//Carson Cummins - November 2018
 import java.util.ArrayList;
 import java.util.Random;
 import java.io.*;
 
 public class NeuralNetwork implements Member<NeuralNetwork>,Serializable{
 	
-	final String SERIALIZE_FILEPATH = "NeuralNetwork.tabot";
+	final static String SERIALIZE_FILEPATH = "NeuralNetwork.tabot";
 	final Random random = new Random();
 	final int rawInputs = 3;
 	final int[] neuronsInLayer = {34, 16, 8, 4};

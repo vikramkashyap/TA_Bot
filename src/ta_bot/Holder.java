@@ -1,4 +1,4 @@
-package org.bitenet.predict.genetic;
+package ta_bot;
 
 import java.util.ArrayList;
 
@@ -30,11 +30,17 @@ public ArrayList<Holder<T>> breed(Holder<T> in) {
 	return ret;
 }
 public Holder<T> mutate() {
-	Cloner cloner=new Cloner();
-	Holder<T> clone = cloner.deepClone(this);
+	Holder<T> clone = clone();
 	Holder<T> temp = new Holder<T>(clone.getMember());
 	temp.myMem.mutate();
 	return temp;
+}
+@Override
+public Holder<T> clone(){
+	Holder<T> ret = new Holder<T>(myMem.clone());
+	ret.myScore = myScore;
+	ret.complete = complete;
+	return ret;
 }
 public int compareTo(Holder<T> in) {
 	if (getScore() < in.getScore()) {

@@ -1,6 +1,5 @@
-package org.bitenet.predict.genetic;
+package ta_bot;
 
-import org.bitenet.predict.data.DataSet;
 /*
  * Purpose: This represents a member to be evolved
  * 
@@ -14,4 +13,5 @@ public double score();
 public T random();
 public void mutate();
 public void print();
+public T clone();
 }

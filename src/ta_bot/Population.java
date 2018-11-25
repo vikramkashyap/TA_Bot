@@ -1,16 +1,15 @@
-package org.bitenet.predict.genetic;
+package ta_bot;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
-
-import com.rits.cloning.Cloner;
 /*
  * Purpose: This handles the implementation of a genetic algorithm
  * 
  * @author Carson Cummins
  * @version 0.0
  */
-public class NPopulation <T extends Member<T>>{
+public class Population <T extends Member<T>>{
 
 	/** The size of the tournament. */
 	private static final int TOURNAMENT_SIZE = 3;
@@ -19,7 +18,7 @@ public class NPopulation <T extends Member<T>>{
 	private float mutation;
 	private float crossover;
 	private ArrayList<Holder<T>> popArr;
-	public NPopulation(int size, float crossoverRatio, float elitismRatio, float mutationRatio, T parent) {
+	public Population(int size, float crossoverRatio, float elitismRatio, float mutationRatio, T parent) {
 		
 		this.crossover = crossoverRatio;
 		this.elitism = elitismRatio;
@@ -94,23 +93,21 @@ public class NPopulation <T extends Member<T>>{
 	
 
 	private ArrayList<Holder<T>> sort(ArrayList<Holder<T>> in) {
-		Cloner c = new Cloner();
-		ArrayList<Holder<T>> ret = c.deepClone(in);
+		ArrayList<Holder<T>> ret = in;
 		//score the current population
 		for (int i = 0; i < ret.size(); i++) {
 			ret.get(i).score();
 		}
 		Collections.sort(ret);
-		for (int i = 0; i < ret.size(); i++) {
-			System.out.print(ret.get(i).getScore()+",");
-		}
-		System.out.println();
 		return ret;
 	}
 
 	public ArrayList<Holder<T>> getPopulation() {
-		Cloner cloner=new Cloner();
-		return cloner.deepClone(popArr);
+		ArrayList<Holder<T>> popret = new ArrayList<>();
+		for (Holder<T> t : popArr){
+			popret.add((Holder<T>)t.clone());
+		}
+		return popret;
 	}
 	
 

@@ -11,6 +11,7 @@ def copy_directory(dir):
         copy_directory(dir+'/'+os.path.basename(file))
 
 print('to run locally, just run the Main.java class')
+print('class files have to be built by nathan in eclipse before training should happen')
 print('for a remote server, robocode and java must be installed')
 print('it also must be open for ssh')
 print('enter the following information for the server')

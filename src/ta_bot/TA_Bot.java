@@ -1,5 +1,6 @@
-//Blitz - A Robot made by Nathan Purwosumarto
-// Java Period 4 - 11/17/2015
+//TABOT made by 2nd period java TA's
+// 11/24/18
+//this will hopefully work
 
 package ta_bot;
 //Imports 
@@ -15,7 +16,7 @@ public class TA_Bot extends AdvancedRobot {
 	String[] currentEnemies = new String[maxEnemiesTracked];
 	TrackedEnemy[] enemyData = new TrackedEnemy[maxEnemiesTracked];
 	int numSavedEnemies = 0;
-	DummyNet net = new DummyNet();
+	NotaDummyNet net = new NotaDummyNet();
 	
 	//heading update, speed update, turret heading update, fire confidence
 	double[] data = {0, 0, 0, 0};

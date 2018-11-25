@@ -1,16 +1,23 @@
+package ta_bot;
 /*Scorer: Tests a robocode bot against samples and returns a score
 */
 
-import robocode.*;
-import robocode.control.RobocodeEngine;
+import java.io.File;
+
+import robocode.control.*;
+import robocode.control.events.BattleAdaptor;
+import robocode.control.events.BattleCompletedEvent;
+import robocode.control.events.RoundStartedEvent;
+import robocode.control.snapshot.IRobotSnapshot;
 
 public class Scorer extends BattleAdaptor {
 	
 	BattleCompletedEvent completedevent = null;
 	int testBotIndex = -1;
-
+	RobocodeEngine engine;
+	BattleSpecification battleSpec;
 	public Scorer() {
-		RobocodeEngine engine = new RobocodeEngine(new File("C:\Robocode"));
+		engine = new RobocodeEngine(new File(""));
 		
 		engine.addBattleListener(this);
 		
@@ -19,7 +26,7 @@ public class Scorer extends BattleAdaptor {
 		int numBattles = 5;
 		BattlefieldSpecification fieldSpec = new BattlefieldSpecification(800, 600);
 		RobotSpecification[] robots = engine.getLocalRepository("sample.Wall,sample.Crazy,sample.RamFire,sample.TrackFire");	//Add the path of our bot
-		BattleSpecification battleSpec = new BattleSpecification(numbattles, fieldSpec, robots);
+		battleSpec = new BattleSpecification(numBattles, fieldSpec, robots);
 	}
 	
 	/*Runs a battle with given robot against examples and returns score of bot

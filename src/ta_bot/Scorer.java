@@ -17,7 +17,7 @@ public class Scorer extends BattleAdaptor {
 	RobocodeEngine engine;
 	BattleSpecification battleSpec;
 	public Scorer() {
-		engine = new RobocodeEngine(new File(""));
+		engine = new RobocodeEngine(new File("C:/Robocode"));
 		
 		engine.addBattleListener(this);
 		
@@ -25,7 +25,7 @@ public class Scorer extends BattleAdaptor {
 		
 		int numBattles = 5;
 		BattlefieldSpecification fieldSpec = new BattlefieldSpecification(800, 600);
-		RobotSpecification[] robots = engine.getLocalRepository("sample.Wall,sample.Crazy,sample.RamFire,sample.TrackFire");	//Add the path of our bot
+		RobotSpecification[] robots = engine.getLocalRepository("sample.Walls,sample.Crazy,sample.RamFire,sample.TrackFire,ta_bot.TA_Bot");	//Add the path of our bot
 		battleSpec = new BattleSpecification(numBattles, fieldSpec, robots);
 	}
 	
@@ -47,7 +47,7 @@ public class Scorer extends BattleAdaptor {
 	public void onRoundStarted(RoundStartedEvent e) {
 		IRobotSnapshot[] robots = e.getStartSnapshot().getRobots();
 		for (IRobotSnapshot s : robots) {
-			if (s.getName().equals("TABot"))	//Replace with full name
+			if (s.getName().equals("sample.Walls"))	//Replace with full name
 				testBotIndex = s.getRobotIndex();
 		}
 	}

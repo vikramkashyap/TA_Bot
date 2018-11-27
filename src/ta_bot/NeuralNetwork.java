@@ -10,7 +10,7 @@ import java.io.*;
 
 public class NeuralNetwork implements Member<NeuralNetwork>,Serializable{
 	
-	final static String SERIALIZE_FILEPATH = "NeuralNetwork.tabot";
+	final static String SERIALIZE_FILEPATH = "bin/ta_bot/NeuralNetwork.tabot";
 	final Random random = new Random();
 	final int rawInputs = 3;
 	final int[] neuronsInLayer = {33, 16, 8, 4};

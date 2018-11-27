@@ -29,6 +29,10 @@ public class Population <T extends Member<T>>{
 		for (int i = 0; i < size; i++) {
 			this.popArr.add(new Holder<T>(parent.random()));
 		}
+		for(Holder<T> kk : this.popArr) {
+			System.out.println(kk);
+			System.out.println(kk.myMem);
+		}
 		popArr = sort(popArr);
 	}
 

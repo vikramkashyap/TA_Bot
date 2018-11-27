@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author Carson Cummins
  * @version 0.0
  */
-public class Holder<T extends Member<T>> implements Comparable<Holder<T>>{
+public class Holder<T extends Member<T>> implements Comparable<Holder<T>>, Cloneable{
 protected T myMem;
 protected double myScore;
 public boolean complete = false;

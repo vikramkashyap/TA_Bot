@@ -92,6 +92,7 @@ public class NeuralNetwork implements Member<NeuralNetwork>,Serializable{
 				}
 			}
 		}
+		rett[l] = new NeuralNetwork(ret);
 	}
 	return rett;
 	}
@@ -205,6 +206,9 @@ public class NeuralNetwork implements Member<NeuralNetwork>,Serializable{
 			for(int j = 0; j < layers.get(i).length; j++){
 				layerOutput[j] = layers.get(i)[j].calculateOutput();
 			}
+		}
+		for (int i = 0; i < layerOutput.length; i++) {
+			System.out.println("Layer Output "+i + " " + layerOutput[i]);
 		}
 		return layerOutput;
 	}

@@ -21,7 +21,7 @@ public class Scorer extends BattleAdaptor {
 		
 		engine.addBattleListener(this);
 		
-		engine.setVisible(true);
+		engine.setVisible(false);
 		
 		int numBattles = 5;
 		BattlefieldSpecification fieldSpec = new BattlefieldSpecification(800, 600);

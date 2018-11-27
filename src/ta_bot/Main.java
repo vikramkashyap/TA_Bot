@@ -2,8 +2,8 @@ package ta_bot;
 
 
 public class Main {
-	public final int POP_SIZE = 100;
-	public final int MAX_GENS = 100000;
+	public final int POP_SIZE = 200;
+	public final int MAX_GENS = 1000;
 	public final float CROSSOVER_RATE = .5f;
 	public final float ELITE_RATE = .1f;
 	public final float MUTATE_RATE = .05f;
@@ -11,7 +11,7 @@ public class Main {
 	
 	public Main() {
 		NeuralNetwork network = EvolutionHandler.train(POP_SIZE, MAX_GENS, CROSSOVER_RATE, ELITE_RATE, MUTATE_RATE, REQ_ERROR, new NeuralNetwork());
-		network.serialize(NeuralNetwork.SERIALIZE_FILEPATH);
+		network.serialize("C:\\Users\\301968\\git\\TA_Bot\\bin\\ta_bot\\NeuralNetwork.tabot");
 		System.out.println("Training is done my sirs, find the serialized network at "
 		+ NeuralNetwork.SERIALIZE_FILEPATH);
 

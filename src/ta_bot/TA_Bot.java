@@ -69,6 +69,9 @@ public class TA_Bot extends AdvancedRobot {
 			numSavedEnemies++;
 		}
 		data = net.forwardProp(this.getX(), this.getY(), this.getHeading(), this.getGunHeading(), this.getEnergy(), enemyData);
+		for (double c:data) {
+			System.out.println(c);
+		}
 	}
 	
 	public void calculateFire(double fireconfidence) {

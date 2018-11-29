@@ -38,12 +38,12 @@ public class TA_Bot extends AdvancedRobot {
 		// Robot main loop
 		while (true) {
 			setTurnRadarRight(10000);
-			System.out.println("heading update: " + data[0]);
-			turnRight(data[0]);
-			System.out.println("speed update: " + data[1]);
-			ahead(data[1]);
-			System.out.println("turret heading update: " + data[2]);
-			turnGunRight(data[2]);
+			System.out.println("heading update: " + 10*data[0]);
+			turnRightRadians(1.3*data[0]);
+			System.out.println("speed update: " + 100*data[1]);
+			ahead(100*data[1]);
+			System.out.println("turret heading update: " + 10*data[2]);
+			turnGunRightRadians(1.3*data[2]);
 			System.out.println("fire conf: " + data[3]);
 			calculateFire(data[3]);
 		}
@@ -75,12 +75,12 @@ public class TA_Bot extends AdvancedRobot {
 	}
 	
 	public void calculateFire(double fireconfidence) {
-		if(fireconfidence < 50.0) {
+		if(fireconfidence < .50) {
 			return;
 		}
 		else {
-			System.out.println("firing at " + (fireconfidence - 50)/16 + " bullet strength");
-			fire((fireconfidence - 50)/16);
+			System.out.println("firing at " + (100*(fireconfidence - .50))/16 + " bullet strength");
+			fire((100*(fireconfidence - .50))/16);
 		}
 	}
 

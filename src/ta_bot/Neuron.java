@@ -34,8 +34,9 @@ public class Neuron implements Serializable{
 		previousWeightDeltas = new double[numInputs];
 		//initializes random weights between -2.0 to 2.0
 		for(int i = 0; i < numInputs; i++){
-			weights[i] = 2 * random.nextDouble() - 1;
-		}	
+			weights[i] = 10*(2 * random.nextDouble() - 1);
+		}
+		biasWeight = 10*(2*random.nextDouble() -1);
 	}
 	
 	public void setInputs(double[] data){

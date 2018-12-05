@@ -13,7 +13,7 @@ public class NeuralNetwork implements Member<NeuralNetwork>,Serializable{
 	final static String SERIALIZE_FILEPATH = "bin/ta_bot/NeuralNetwork.tabot";
 	final Random random = new Random();
 	final int rawInputs = 3;
-	final int[] neuronsInLayer = {33, 16, 8, 4};
+	final int[] neuronsInLayer = {33,40,4};
 	ArrayList<Neuron[]> layers = new ArrayList<>();
 	private static final long serialVersionUID = 1234L;
 	
@@ -96,12 +96,13 @@ public class NeuralNetwork implements Member<NeuralNetwork>,Serializable{
 	}
 	return rett;
 	}
-	public double score(){
+	public double score(boolean engine_vis){
 		//serialize the neural network
 		serialize(SERIALIZE_FILEPATH);
-		Scorer scorer = new Scorer();
+		Scorer scorer = new Scorer(engine_vis);
 		int score = scorer.score();
-		return (double)1000/(double)score;
+		System.out.println("Score: "+score);
+		return -score;
 
 	}
 	public NeuralNetwork random(){

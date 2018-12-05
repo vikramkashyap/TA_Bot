@@ -1,25 +1,40 @@
 package ta_bot;
 
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
 /*
  * Purpose: This handles the implementation of a genetic algorithm
  * 
  * @author Carson Cummins
  * @version 0.0
  */
-public class Population <T extends Member<T>>{
+public class Population <T extends Member<T>> implements ActionListener{
 
 	/** The size of the tournament. */
+	boolean engine_vis;
 	private static final int TOURNAMENT_SIZE = 3;
 	private static final Random rand = new Random(System.currentTimeMillis());
 	private float elitism;
 	private float mutation;
 	private float crossover;
+	JFrame f;
 	private ArrayList<Holder<T>> popArr;
 	public Population(int size, float crossoverRatio, float elitismRatio, float mutationRatio, T parent) {
-		
+		f = new JFrame("evolution handler");
+		f.setLayout(new GridLayout(1,1));
+		f.setSize(500, 500);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JButton jb = new JButton("set visible \n (this action can't be undone)");
+		f.add(jb);
+		jb.addActionListener(this);
+		f.setVisible(true);
 		this.crossover = crossoverRatio;
 		this.elitism = elitismRatio;
 		this.mutation = mutationRatio;
@@ -100,7 +115,7 @@ public class Population <T extends Member<T>>{
 		ArrayList<Holder<T>> ret = in;
 		//score the current population
 		for (int i = 0; i < ret.size(); i++) {
-			ret.get(i).score();
+			ret.get(i).score(engine_vis);
 		}
 		Collections.sort(ret);
 		return ret;
@@ -146,5 +161,11 @@ for (int i = 0; i < 2; i++) {
 		}
 		
 		return parents;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		engine_vis = !engine_vis;
+		
 	}
 }

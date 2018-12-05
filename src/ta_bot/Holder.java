@@ -51,8 +51,8 @@ public int compareTo(Holder<T> in) {
 	
 	return 0;
 }
-public void score() {
-	myScore = myMem.score();
+public void score(boolean vis) {
+	myScore = myMem.score(vis);
 	
 }
 
